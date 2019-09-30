@@ -1,0 +1,53 @@
+h1 {
+    text-align: center;
+}
+
+.main-page {
+    background-image: url("/static/images/main-background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.opponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: top;
+}
+
+.opponent-cards {
+    display: inline-block;
+    height: 150px;
+    width: 110px;
+    border-style: solid;
+    border-color: black;
+    margin: 20px;
+}
+
+.game-area {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: inside;
+    height: 150px;
+    width: 110px;
+    border-style: solid;
+    border-color: black;
+}
+
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: bottom;
+}
+
+.player-cards {
+    display: inline-block;
+    height: 150px;
+    width: 110px;
+    border-style: solid;
+    border-color: black;
+    margin: 20px;
+}
