@@ -35,32 +35,16 @@ function createCardDeck() {
 }
 
 
-function testList() {
-    cardDeck = [];
-    let listOfColors = ["blue", "green"];
-    let listOfNumbers = [0];
-    for (let color of listOfColors) {
-        for (let number of listOfNumbers) {
-            cardDeck.push({color: `${color}`, number: `${number}`});
-            cardDeck.push({color: `${color}`, number: `${number}`});
-        }
-    }
-    return cardDeck;
-}
-
-
 function getRandomCard(deck, player) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
     let cardBox = document.querySelector(`.card${player}`);
     cardBox.setAttribute("data-color", `${randomCard.color}`);
     cardBox.setAttribute("data-number", `${randomCard.number}`);
     let newCard = document.createElement("div");
-    newCard.style.height = "200px";
-    newCard.style.width = "120px";
+    newCard.style.height = "250px";
+    newCard.style.width = "200px";
     newCard.style.backgroundSize = "contain";
-    newCard.style.border = "10px";
     newCard.style.backgroundRepeat = "no-repeat";
-    newCard.style.cursor = "pointer";
     newCard.style.backgroundImage = `url('static/images/${randomCard.color}-${randomCard.number}.png')`;
     cardBox.appendChild(newCard);
 }

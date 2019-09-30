@@ -2,26 +2,27 @@ div .card1, .card2 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    cursor: pointer;
 }
 
 div .back {
-    background-image: url("/static/img/back.png");
+    background-image: url("/static/images/back.png");
     display: block;
-    height: 200px;
-    width: 120px;
+    height: 250px;
+    width: 200px;
     background-size: contain;
     background-repeat: no-repeat;
     float: right;
-    padding-right: 50%;
+    padding-right: 30%;
     cursor: pointer;
 }
 
 div .card3 {
     display: block;
-    height: 200px;
-    width: 120px;
+    height: 300px;
+    width: 220px;
     background-size: contain;
     background-repeat: no-repeat;
     float: right;
-    padding-right: 50%;
+    padding-right: 30%;
 }
