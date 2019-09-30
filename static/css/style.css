@@ -1,5 +1,27 @@
-div .card1, .card2{
+div .card1, .card2 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+div .back {
+    background-image: url("/static/img/back.png");
+    display: block;
+    height: 200px;
+    width: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: right;
+    padding-right: 50%;
+    cursor: pointer;
+}
+
+div .card3 {
+    display: block;
+    height: 200px;
+    width: 120px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: right;
+    padding-right: 50%;
 }

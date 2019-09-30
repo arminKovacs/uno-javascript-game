@@ -15,6 +15,7 @@ gameButton.addEventListener("click", function () {
         getRandomCard(testList(), 2);
         counter++;
     }
+    getRandomCard(testList(), 3);
 });
 
 
@@ -57,6 +58,7 @@ function getRandomCard(deck, player) {
     newCard.style.backgroundSize = "contain";
     newCard.style.border = "10px";
     newCard.style.backgroundRepeat = "no-repeat";
+    newCard.style.cursor = "pointer";
     newCard.style.backgroundImage = `url('static/img/${randomCard.color + randomCard.number}.jpg')`;
     cardBox.appendChild(newCard);
 }
