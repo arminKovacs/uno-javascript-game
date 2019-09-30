@@ -25,5 +25,6 @@ def get_random_color_and_num(color_list, num_list):
     return random_list
 
 
+
 if __name__ == '__main__':
     app.run(debug=True)
