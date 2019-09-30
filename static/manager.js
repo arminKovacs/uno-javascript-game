@@ -8,7 +8,11 @@ let gameButton = document.querySelector(".btn-game");
 gameButton.addEventListener("click", function () {
     let counter = 0;
     for (let i = 0; i < 5; i++) {
-        getRandomCard(testList());
+        getRandomCard(testList(), 1);
+        counter++;
+    }
+    for (let i = 0; i < 5; i++) {
+        getRandomCard(testList(), 2);
         counter++;
     }
 });
@@ -42,9 +46,9 @@ function testList() {
 }
 
 
-function getRandomCard(deck) {
+function getRandomCard(deck, player) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
-    let cardBox = document.querySelector(".card");
+    let cardBox = document.querySelector(`.card${player}`);
     cardBox.setAttribute("data-color", `${randomCard.color}`);
     cardBox.setAttribute("data-number", `${randomCard.number}`);
     let newCard = document.createElement("div");

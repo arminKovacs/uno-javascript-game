@@ -1,4 +1,4 @@
-div .card {
+div .card1, .card2{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
