@@ -10,6 +10,8 @@ gameButton.addEventListener("click", function () {
     for (let i = 0; i < 5; i++) {
         getRandomCard(testList(), 1);
         counter++;
+        if (counter >= 5) {
+        }
     }
     for (let i = 0; i < 5; i++) {
         getRandomCard(testList(), 2);
