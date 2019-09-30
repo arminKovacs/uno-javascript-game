@@ -8,16 +8,16 @@ let gameButton = document.querySelector(".btn-game");
 gameButton.addEventListener("click", function () {
     let counter = 0;
     for (let i = 0; i < 5; i++) {
-        getRandomCard(testList(), 1);
+        getRandomCard(createCardDeck(), 1);
         counter++;
         if (counter >= 5) {
         }
     }
     for (let i = 0; i < 5; i++) {
-        getRandomCard(testList(), 2);
+        getRandomCard(createCardDeck(), 2);
         counter++;
     }
-    getRandomCard(testList(), 3);
+    getRandomCard(createCardDeck(), 3);
 });
 
 
@@ -61,6 +61,6 @@ function getRandomCard(deck, player) {
     newCard.style.border = "10px";
     newCard.style.backgroundRepeat = "no-repeat";
     newCard.style.cursor = "pointer";
-    newCard.style.backgroundImage = `url('static/img/${randomCard.color + randomCard.number}.jpg')`;
+    newCard.style.backgroundImage = `url('static/images/${randomCard.color}-${randomCard.number}.png')`;
     cardBox.appendChild(newCard);
 }
