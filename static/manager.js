@@ -18,7 +18,7 @@ gameButton.addEventListener("click", function () {
         counter++;
     }
     getRandomCard(createCardDeck(), "stack");
-
+    gameButton.style.display = "none";
 });
 
 
