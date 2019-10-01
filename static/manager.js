@@ -1,13 +1,13 @@
 let cardDeck;
 
 //Reset button - load game.html from start to get a new first draw
-let button = document.querySelector(".button");
+let button = document.querySelector(".btn-danger");
 button.addEventListener("click", function () {
     document.location.reload(false);
 });
 
 //FIRST DRAW button - set the game by drawing the first 5-5 cards
-let gameButton = document.querySelector(".btn-game");
+let gameButton = document.querySelector(".btn-primary");
 gameButton.addEventListener("click", function () {
     let counter = 0;
     for (let i = 0; i < 5; i++) {
@@ -41,19 +41,26 @@ function createCardDeck() {
 
 function getRandomCard(deck, player) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
-    console.log(deck);
     let index = deck.indexOf(randomCard);
     deck.splice(index, 1);
-    console.log(deck);
-    let cardBox = document.querySelector(`.card-${player}`);
+    let cardBox = document.querySelector(`.container-${player}`);
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${randomCard.color}`);
     newCard.setAttribute("data-number", `${randomCard.number}`);
-    newCard.style.height = "250px";
-    newCard.style.width = "200px";
+
+    if (cardBox.classList.value === "container-hand") {
+        newCard.classList.value = "card";
+    } else {
+        newCard.classList.value = "opponent";
+    }
+
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
     newCard.style.backgroundImage = `url('static/images/cards/${randomCard.color}-${randomCard.number}.png')`;
+    let cardAnim = document.createElement("svg");
+    cardAnim.setAttribute("version", "1.1");
+    cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    newCard.appendChild(cardAnim);
     cardBox.appendChild(newCard);
 }
 

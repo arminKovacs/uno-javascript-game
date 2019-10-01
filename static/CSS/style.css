@@ -20,14 +20,24 @@
     right: 0;
 }
 
-.container {
+.container-hand {
+    margin: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     float: bottom;
 }
 
-.opponent-container {
+.container-middle {
+    margin: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+.container-opponent {
+    margin: 40px 20px 20px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,55 +47,43 @@
 .card {
     display: inline-block;
     height: 200px;
-    width: 160px;
-    background-color: #17141d;
+    width: 145px;
     border-radius: 10px;
     box-shadow: -1rem 0 3rem #000;
     transition: 0.4s ease-out;
     position: relative;
     left: 0;
+    cursor: pointer;
 }
 
-.opponent-card {
+.opponent {
     display: inline-block;
     height: 200px;
-    width: 160px;
-    background-color: #17141d;
+    width: 145px;
     border-radius: 10px;
     box-shadow: -1rem 0 3rem #000;
     transition: 0.4s ease-out;
     position: relative;
     left: 0;
-}
-
-
-div .card-hand, .card-opponent {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
     cursor: pointer;
 }
 
 div .back {
     background-image: url("/static/images/cards/back.png");
     display: block;
-    height: 250px;
-    width: 200px;
+    height: 200px;
+    width: 145px;
     background-size: contain;
     background-repeat: no-repeat;
-    float: right;
-    padding-right: 30%;
     cursor: pointer;
     }
 
 div .card-stack {
     display: block;
-    height: 300px;
-    width: 220px;
+    height: 200px;
+    width: 145px;
     background-size: contain;
     background-repeat: no-repeat;
-    float: right;
-    padding-right: 30%;
     }
 
 .card:not(:first-child) {
@@ -103,7 +101,7 @@ div .card-stack {
     transition: 0.4s ease-out;
 }
 
-.opponent-card:not(:first-child) {
+.opponent:not(:first-child) {
     margin-left: -50px;
 }
 
