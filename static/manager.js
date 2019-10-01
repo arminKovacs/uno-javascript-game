@@ -7,6 +7,20 @@ for (let color of listOfColors) {
         cardDeck.push({color: `${color}`, number: `${number}`});
     }
 }
+let player;
+let turn = 0;
+
+function changeTurn() {
+    if (turn === 0) {
+        player = "hand"
+        turn = 1;
+    } else if (turn === 1) {
+        player = "opponent"
+        turn = 0;
+    }
+    return player;
+}
+
 
 //Reset button - load game.html from start to get a new first draw
 let button = document.querySelector(".button");
@@ -14,9 +28,15 @@ button.addEventListener("click", function () {
     document.location.reload(false);
 });
 
+//Downside card stack
+let backCard = document.querySelector("#card-back");
+backCard.addEventListener("click", function () {
+    drawNewCard(changeTurn())
+});
+
 //FIRST DRAW button - set the game by drawing the first 5-5 cards
 let gameButton = document.querySelector(".btn-game");
-gameButton.addEventListener("click", firstDraw)
+gameButton.addEventListener("click", firstDraw);
 
 function firstDraw() {
     for (let i = 0; i < 5; i++) {
@@ -55,7 +75,7 @@ function styleRandomCard(card, player) {
 
 function clickCard() {
     let card = event.target;
-    let stack = document.getElementById("card-stack").querySelector('[data-color]');
+    let stack = document.querySelector("#card-stack").querySelector('[data-color]');
     let stackColor = stack.dataset.color;
     let stackNumber = stack.dataset.number;
     let cardColor = card.dataset.color;
@@ -65,4 +85,8 @@ function clickCard() {
         cardStackBox.removeChild(stack);
         cardStackBox.appendChild(card);
     }
+}
+
+function drawNewCard(player) {
+    styleRandomCard(getRandomCard(cardDeck), player);
 }

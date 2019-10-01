@@ -91,7 +91,7 @@ div #card-hand, #card-opponent {
     cursor: pointer;
 }
 
-div .back {
+div #card-back {
     background-image: url("/static/images/cards/back.png");
     display: block;
     height: 250px;
