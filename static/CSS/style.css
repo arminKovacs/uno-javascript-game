@@ -84,7 +84,7 @@
 }
 
 
-div .card-hand, .card-opponent {
+div #card-hand, #card-opponent {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -103,7 +103,7 @@ div .back {
     cursor: pointer;
 }
 
-div .card-stack {
+div #card-stack {
     display: block;
     height: 300px;
     width: 220px;
