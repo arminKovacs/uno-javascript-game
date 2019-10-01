@@ -49,14 +49,20 @@ function styleRandomCard(card, player) {
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
     newCard.style.backgroundImage = `url('static/images/cards/${card.color}-${card.number}.png')`;
-    newCard.addEventListener("click", selectCard)
+    newCard.addEventListener("click", clickCard);
     cardBox.appendChild(newCard);
 }
 
-function selectCard() {
+function clickCard() {
+    let card = event.target;
     let stack = document.getElementById("card-stack").querySelector('[data-color]');
     let stackColor = stack.dataset.color;
     let stackNumber = stack.dataset.number;
-    console.log(stack.dataset.color);
-    console.log(stack.dataset.number);
+    let cardColor = card.dataset.color;
+    let cardNumber = card.dataset.number;
+    let cardStackBox = document.querySelector("#card-stack");
+    if (cardNumber === stackNumber || cardColor === stackColor) {
+        cardStackBox.removeChild(stack);
+        cardStackBox.appendChild(card);
+    }
 }
