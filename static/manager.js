@@ -7,16 +7,22 @@ for (let color of listOfColors) {
         cardDeck.push({color: `${color}`, number: `${number}`});
     }
 }
+
+
+
 let player = "hand";
 let turn = 0;
+document.querySelector("h1").innerHTML = "Turn: Player 1";
 
 function changeTurn() {
     if (turn === 0) {
         player = "opponent";
         turn = 1;
+        document.querySelector("h1").innerHTML = "Turn: Player 2";
     } else if (turn === 1) {
         player = "hand";
         turn = 0;
+        document.querySelector("h1").innerHTML = "Turn: Player 1";
     }
 };
 
@@ -72,8 +78,8 @@ function styleRandomCard(card, player) {
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${card.color}`);
     newCard.setAttribute("data-number", `${card.number}`);
-    newCard.style.height = "250px";
-    newCard.style.width = "200px";
+    newCard.style.height = "200px";
+    newCard.style.width = "120px";
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
     newCard.style.backgroundImage = `url('static/images/cards/${card.color}-${card.number}.png')`;
