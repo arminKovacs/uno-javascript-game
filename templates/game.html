@@ -1,7 +1,9 @@
+<body class="table">
 {% extends 'layout.html' %}
 
 {% block head %}
 {% endblock %}
+
 
 {% block content %}
 
@@ -16,11 +18,40 @@
 <div class="game-area"></div>
 
 <div class="player">
-    <div class="player-cards"></div>
-    <div class="player-cards"></div>
-    <div class="player-cards"></div>
-    <div class="player-cards"></div>
-    <div class="player-cards"></div>
+    <div class="container">
+      <div class="card">
+        <div class="circle">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+        </div>
+      </div>
+      <div class="card">
+        <div class="circle">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+        </div>
+      </div>
 </div>
 
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <div class="nav navbar-nav navbar-center">
+        <button type="button" class="btn btn-primary">Draw a card</button>
+        <button type="button" class="btn btn-secondary">End turn</button>
+        <button type="button" class="btn btn-success">UNO</button>
+    </div>
+</nav>
+
 {% endblock %}
+</body>
