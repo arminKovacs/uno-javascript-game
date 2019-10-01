@@ -7,20 +7,50 @@
 
 {% block content %}
 
-    <div class="test">
+    <div class="opponent-container">
+        <div class="opponent-card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="opponent-card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="opponent-card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="opponent-card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+    </div>
+
+    <div class="middle">
         <div class="back"></div>
+        <div class="card-stack"></div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="card">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+    </div>
+
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <div class="nav navbar-nav navbar-center">
+        <button type="button" class="btn btn-primary">Draw a card</button>
+        <button type="button" class="btn btn-secondary">End turn</button>
+        <button type="button" class="btn btn-success">UNO</button>
         <button class="button" style="color: red">Reset</button>
         <button class="btn-game">FIRST DRAW</button>
-
-        <h2>Player 1</h2>
-        <p>Cards of Player 1</p>
-        <div class="card-hand"></div>
-
-        <div class="card-stack"></div>
-        <h2>Player 2</h2>
-        <p>Cards of Player 2</p>
-        <div class="card-opponent"></div>
     </div>
+</nav>
 
 {% endblock %}
 </body>
