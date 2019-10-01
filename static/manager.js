@@ -47,9 +47,9 @@ function getRandomCard(deck, player) {
     deck.splice(index, 1);
     console.log(deck);
     let cardBox = document.querySelector(`.card-${player}`);
-    cardBox.setAttribute("data-color", `${randomCard.color}`);
-    cardBox.setAttribute("data-number", `${randomCard.number}`);
     let newCard = document.createElement("div");
+    newCard.setAttribute("data-color", `${randomCard.color}`);
+    newCard.setAttribute("data-number", `${randomCard.number}`);
     newCard.style.height = "250px";
     newCard.style.width = "200px";
     newCard.style.backgroundSize = "contain";
