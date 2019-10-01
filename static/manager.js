@@ -1,9 +1,12 @@
 let cardDeck;
-let button = document.querySelector(".btn");
+
+//Reset button - load game.html from start to get a new first draw
+let button = document.querySelector(".button");
 button.addEventListener("click", function () {
     document.location.reload(false);
 });
 
+//FIRST DRAW button - set the game by drawing the first 5-5 cards
 let gameButton = document.querySelector(".btn-game");
 gameButton.addEventListener("click", function () {
     let counter = 0;
@@ -35,10 +38,6 @@ function createCardDeck() {
     return cardDeck;
 }
 
-
-function workWithCardDeck(deck) {
-    return deck;
-}
 
 function getRandomCard(deck, player) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
