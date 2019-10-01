@@ -8,16 +8,17 @@ let gameButton = document.querySelector(".btn-game");
 gameButton.addEventListener("click", function () {
     let counter = 0;
     for (let i = 0; i < 5; i++) {
-        getRandomCard(createCardDeck(), 1);
+        getRandomCard(createCardDeck(), "hand");
         counter++;
         if (counter >= 5) {
         }
     }
     for (let i = 0; i < 5; i++) {
-        getRandomCard(createCardDeck(), 2);
+        getRandomCard(createCardDeck(), "opponent");
         counter++;
     }
-    getRandomCard(createCardDeck(), 3);
+    getRandomCard(createCardDeck(), "stack");
+
 });
 
 
@@ -35,9 +36,17 @@ function createCardDeck() {
 }
 
 
+function workWithCardDeck(deck) {
+    return deck;
+}
+
 function getRandomCard(deck, player) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
-    let cardBox = document.querySelector(`.card${player}`);
+    console.log(deck);
+    let index = deck.indexOf(randomCard);
+    deck.splice(index, 1);
+    console.log(deck);
+    let cardBox = document.querySelector(`.card-${player}`);
     cardBox.setAttribute("data-color", `${randomCard.color}`);
     cardBox.setAttribute("data-number", `${randomCard.number}`);
     let newCard = document.createElement("div");
@@ -48,3 +57,4 @@ function getRandomCard(deck, player) {
     newCard.style.backgroundImage = `url('static/images/${randomCard.color}-${randomCard.number}.png')`;
     cardBox.appendChild(newCard);
 }
+

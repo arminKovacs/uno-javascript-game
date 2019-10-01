@@ -51,3 +51,32 @@ h1 {
     border-color: black;
     margin: 20px;
 }
+
+div .card-hand, .card-opponent {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+div .back {
+    background-image: url("/static/images/back.png");
+    display: block;
+    height: 250px;
+    width: 200px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: right;
+    padding-right: 30%;
+    cursor: pointer;
+}
+
+div .card-stack {
+    display: block;
+    height: 300px;
+    width: 220px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: right;
+    padding-right: 30%;
+}
