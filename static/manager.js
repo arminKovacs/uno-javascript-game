@@ -7,19 +7,18 @@ for (let color of listOfColors) {
         cardDeck.push({color: `${color}`, number: `${number}`});
     }
 }
-let player;
+let player = "hand";
 let turn = 0;
 
 function changeTurn() {
     if (turn === 0) {
-        player = "hand"
+        player = "opponent";
         turn = 1;
     } else if (turn === 1) {
-        player = "opponent"
+        player = "hand";
         turn = 0;
     }
-    return player;
-}
+};
 
 
 //Reset button - load game.html from start to get a new first draw
@@ -31,8 +30,17 @@ button.addEventListener("click", function () {
 //Downside card stack
 let backCard = document.querySelector("#card-back");
 backCard.addEventListener("click", function () {
-    drawNewCard(changeTurn())
+    if (player === "hand") {
+        if (turn === 0) {
+            drawNewCard();
+        }
+    } else if (player === "opponent") {
+        if (turn === 1) {
+            drawNewCard()
+        }
+    }
 });
+
 
 //FIRST DRAW button - set the game by drawing the first 5-5 cards
 let gameButton = document.querySelector(".btn-game");
@@ -70,27 +78,39 @@ function styleRandomCard(card, player) {
     newCard.style.backgroundRepeat = "no-repeat";
     newCard.style.backgroundImage = `url('static/images/cards/${card.color}-${card.number}.png')`;
     newCard.addEventListener("click", function () {
-        clickCard(player, changeTurn())
+        if (player === "hand") {
+            if (turn === 0) {
+                clickCard()
+            }
+        } else if (player === 'opponent') {
+            if (turn === 1) {
+                clickCard()
+            }
+        }
     });
     cardBox.appendChild(newCard);
 }
 
-function clickCard(player, turn) {
-    if (turn === player) {
-        let card = event.target;
-        let stack = document.querySelector("#card-stack").querySelector('[data-color]');
-        let stackColor = stack.dataset.color;
-        let stackNumber = stack.dataset.number;
-        let cardColor = card.dataset.color;
-        let cardNumber = card.dataset.number;
-        let cardStackBox = document.querySelector("#card-stack");
-        if (cardNumber === stackNumber || cardColor === stackColor) {
-            cardStackBox.removeChild(stack);
-            cardStackBox.appendChild(card);
-        }
+function clickCard() {
+    let card = event.target;
+    let stack = document.querySelector("#card-stack").querySelector('[data-color]');
+    let stackColor = stack.dataset.color;
+    let stackNumber = stack.dataset.number;
+    let cardColor = card.dataset.color;
+    let cardNumber = card.dataset.number;
+    let cardStackBox = document.querySelector("#card-stack");
+    if (cardNumber === stackNumber || cardColor === stackColor) {
+        cardStackBox.removeChild(stack);
+        cardStackBox.appendChild(card);
+        changeTurn();
     }
 }
 
-function drawNewCard(player) {
-    styleRandomCard(getRandomCard(cardDeck), player);
+function drawNewCard() {
+    if (turn === 0) {
+        styleRandomCard(getRandomCard(cardDeck), "hand");
+    } else if (turn === 1) {
+        styleRandomCard(getRandomCard(cardDeck), "opponent")
+    }
+    changeTurn()
 }
