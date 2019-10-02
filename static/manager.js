@@ -119,3 +119,9 @@ function drawNewCard() {
     }
     changeTurn()
 }
+
+
+function checkForWin() {
+    let handCard = document.querySelector("#card-hand");
+    let opponentCard = document.querySelector("#card-opponent");
+}
