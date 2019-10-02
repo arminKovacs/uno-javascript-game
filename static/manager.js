@@ -158,8 +158,7 @@ function checkForWin() {
 
 function modalWin() {
     let modal = document.querySelector("#myModal");
-    document.querySelector(".modal-content").querySelector("p").innerHTML =
-        `${sessionStorage.getItem('Player')} won!`;
+    document.querySelector(".modal-content").querySelector("h1").innerHTML = `${sessionStorage.getItem('Player')} won!`;
     let span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
     span.onclick = function () {
