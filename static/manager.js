@@ -8,8 +8,6 @@ for (let color of listOfColors) {
     }
 }
 
-
-
 let player = "hand";
 let turn = 0;
 
