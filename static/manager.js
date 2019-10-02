@@ -1,6 +1,6 @@
 let cardDeck = [];
 let listOfColors = ["blue", "green", "red", "yellow"];
-let listOfNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let listOfNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "block", "reverse"];
 for (let color of listOfColors) {
     for (let number of listOfNumbers) {
         cardDeck.push({color: `${color}`, number: `${number}`});
@@ -145,6 +145,9 @@ function clickCard() {
     if (cardNumber === stackNumber || cardColor === stackColor) {
         cardStackBox.removeChild(stack);
         cardStackBox.appendChild(card);
+        if (cardNumber === "block" || cardNumber === "reverse") {
+            changeTurn();
+        }
         changeTurn();
     }
 }
