@@ -32,9 +32,11 @@ function changeTurn() {
         player = "opponent";
         turn = 1;
         for (let item of handCards) {
+            item.classList.value = 'opponent';
             item.style.backgroundImage = `url('/static/images/cards/back.png')`;
         }
         for (let item of opponentCards) {
+            item.classList.value = 'card';
             let color = item.dataset.color;
             let number = item.dataset.number;
             item.style.backgroundImage = `url('/static/images/cards/${color}-${number}.png')`;
@@ -43,9 +45,11 @@ function changeTurn() {
         player = "hand";
         turn = 0;
         for (let item of opponentCards) {
+            item.classList.value = 'opponent';
             item.style.backgroundImage = `url('/static/images/cards/back.png')`;
         }
         for (let item of handCards) {
+            item.classList.value = 'card';
             let color = item.dataset.color;
             let number = item.dataset.number;
             item.style.backgroundImage = `url('/static/images/cards/${color}-${number}.png')`;
@@ -106,7 +110,13 @@ function styleRandomCard(card, player) {
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${card.color}`);
     newCard.setAttribute("data-number", `${card.number}`);
-    newCard.classList.value = 'card';
+
+    if (cardBox.id.valueOf() === "container-hand") {
+        newCard.classList.value = 'card';
+    } else {
+        newCard.classList.value = 'opponent';
+    }
+
     if (turn === 0 && player === "hand") {
         newCard.style.backgroundImage = `url(/static/images/cards/${card.color}-${card.number}.png)`;
     } else if (turn === 0 && player === "opponent") {
