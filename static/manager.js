@@ -69,7 +69,7 @@ function getRandomCard(deck) {
 }
 
 function styleRandomCard(card, player) {
-    let cardBox = document.querySelector(`#card-${player}`);
+    let cardBox = document.querySelector(`#container-${player}`);
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${card.color}`);
     newCard.setAttribute("data-number", `${card.number}`);
@@ -97,12 +97,12 @@ function styleRandomCard(card, player) {
 
 function clickCard() {
     let card = event.target;
-    let stack = document.querySelector("#card-stack").querySelector('[data-color]');
+    let stack = document.querySelector("#container-stack").querySelector('[data-color]');
     let stackColor = stack.dataset.color;
     let stackNumber = stack.dataset.number;
     let cardColor = card.dataset.color;
     let cardNumber = card.dataset.number;
-    let cardStackBox = document.querySelector("#card-stack");
+    let cardStackBox = document.querySelector("#container-stack");
     if (cardNumber === stackNumber || cardColor === stackColor) {
         cardStackBox.removeChild(stack);
         cardStackBox.appendChild(card);
