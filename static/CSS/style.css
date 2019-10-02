@@ -1,11 +1,15 @@
+#header {
+    text-align: center;
+}
+
 #press-button {
+    margin: 300px 100px 100px 100px;
     font-family: 'Anton', sans-serif;
     color: white;
 }
 
 .main-page {
     background-image: url("/static/images/background/main-background.jpg");
-    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
