@@ -9,7 +9,6 @@ for (let color of listOfColors) {
 }
 
 
-
 let player = "hand";
 let turn = 0;
 
@@ -73,10 +72,14 @@ function styleRandomCard(card, player) {
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${card.color}`);
     newCard.setAttribute("data-number", `${card.number}`);
-    newCard.classList.value = 'card';
+    if (player === "opponent") {
+        newCard.classList.value = 'opponent';
+    } else {
+        newCard.classList.value = 'card';
+        newCard.style.backgroundImage = `url('static/images/cards/${card.color}-${card.number}.png')`;
+    }
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
-    newCard.style.backgroundImage = `url('static/images/cards/${card.color}-${card.number}.png')`;
     let cardAnim = document.createElement("svg");
     cardAnim.setAttribute("version", "1.1");
     cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -122,6 +125,31 @@ function drawNewCard() {
 
 
 function checkForWin() {
-    let handCard = document.querySelector("#card-hand");
-    let opponentCard = document.querySelector("#card-opponent");
+    let handCard = document.querySelector("#container-hand");
+    let opponentCard = document.querySelector("#container-opponent");
+    if (handCard === null || opponentCard === null) {
+        modalWin();
+    }
+}
+
+function modalWin() {
+    let modal = document.querySelector("#myModal");
+    let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+// When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
