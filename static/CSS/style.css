@@ -64,7 +64,6 @@
     transition: 0.4s ease-out;
     position: relative;
     left: 0;
-    background-image: url("/static/images/cards/back.png");
     cursor: pointer;
 }
 
