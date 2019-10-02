@@ -9,11 +9,16 @@ for (let color of listOfColors) {
 }
 
 let elementIsClicked = false;
-function clickHandler(){
-  elementIsClicked = true;
+
+function clickHandler() {
+    elementIsClicked = true;
+    document.querySelector(".message").innerHTML = "You pushed the UNO button!"
 }
+
 let unoButton = document.querySelector(".btn-success");
-unoButton.addEventListener("click", clickHandler);
+unoButton.addEventListener("click", function () {
+    console.log(clickHandler());
+});
 let player = "hand";
 let turn = 0;
 
@@ -63,18 +68,25 @@ function flipCards() {
 }
 
 
+function unoNotClicked() {
+    if (elementIsClicked === false) {
+        drawCardIfUnoFail();
+        checkForWin();
+        flipCards();
+    } else if (elementIsClicked === true) {
+        checkForWin();
+        flipCards();
+        elementIsClicked = false;
+        document.querySelector(".message").innerHTML = "";
+    }
+}
+
 function changeTurn(numberOfCardInHand) {
     if (numberOfCardInHand === 3) {
         switch (checkForUno()) {
             case true:
-                if (elementIsClicked === false) {
-                    setTimeout(drawCardIfUnoFail, 6000);
-                    setTimeout(checkForWin, 6000);
-                    setTimeout(flipCards, 6000);
-                } else if (elementIsClicked === true) {
-                    checkForWin();
-                    flipCards();
-                }
+                countDown();
+                setTimeout(unoNotClicked, 6000);
                 break;
             case false:
                 checkForWin();
@@ -189,9 +201,9 @@ function clickCard() {
             changeTurn(cardContainerNumber);
         }
         if (cardNumber === "plus-2") {
-            changeTurn(cardContainerNumber);
+            changeTurn(4);
             drawNewCard();
-            changeTurn(cardContainerNumber);
+            changeTurn(4);
             drawNewCard();
         }
         changeTurn(cardContainerNumber);
@@ -233,14 +245,11 @@ function checkForWin() {
 function checkForUno() {
     let handContainer = document.querySelector("#container-hand").childNodes.length;
     let opponentContainer = document.querySelector("#container-opponent").childNodes.length;
-    if (handContainer === 2) {
-        countDown();
+    if (handContainer === 2 || opponentContainer === 2) {
         return true
-    } else if (opponentContainer === 2) {
-        countDown();
-        return true
+    } else {
+        return false;
     }
-    return false;
 }
 
 function modalWin() {
