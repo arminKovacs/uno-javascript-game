@@ -95,6 +95,7 @@ function styleRandomCard(card, player) {
         }
     });
     cardBox.appendChild(newCard);
+    console.log(cardBox);
 }
 
 function clickCard() {
