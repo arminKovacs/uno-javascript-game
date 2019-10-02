@@ -12,12 +12,30 @@ let player = "hand";
 let turn = 0;
 
 function changeTurn() {
+    let handCards = document.querySelector("#container-hand").querySelectorAll("div");
+    let opponentCards = document.querySelector("#container-opponent").querySelectorAll("div");
     if (turn === 0) {
         player = "opponent";
         turn = 1;
+        for (let item of handCards) {
+            item.style.backgroundImage = `url('/static/images/cards/back.png')`;
+        }
+        for (let item of opponentCards) {
+            let color = item.dataset.color;
+            let number = item.dataset.number;
+            item.style.backgroundImage = `url('/static/images/cards/${color}-${number}.png')`;
+        }
     } else if (turn === 1) {
         player = "hand";
         turn = 0;
+        for (let item of opponentCards) {
+            item.style.backgroundImage = `url('/static/images/cards/back.png')`;
+        }
+        for (let item of handCards) {
+            let color = item.dataset.color;
+            let number = item.dataset.number;
+            item.style.backgroundImage = `url('/static/images/cards/${color}-${number}.png')`;
+        }
     }
 };
 
@@ -63,6 +81,7 @@ function getRandomCard(deck) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
     let index = deck.indexOf(randomCard);
     deck.splice(index, 1);
+    console.log(randomCard)
     return randomCard;
 }
 
@@ -71,18 +90,20 @@ function styleRandomCard(card, player) {
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${card.color}`);
     newCard.setAttribute("data-number", `${card.number}`);
-    if (player === "opponent") {
-        newCard.classList.value = 'opponent';
-    } else {
-        newCard.classList.value = 'card';
-        newCard.style.backgroundImage = `url('static/images/cards/${card.color}-${card.number}.png')`;
+    newCard.classList.value = 'card';
+    if (turn === 0 && player === "hand") {
+        newCard.style.backgroundImage = `url(/static/images/cards/${card.color}-${card.number}.png)`;
+    } else if (turn === 0 && player === "opponent") {
+        newCard.style.backgroundImage = `url('/static/images/cards/back.png')`;
+    } else if (turn === 0 || turn === 1) {
+        newCard.style.backgroundImage = `url('/static/images/cards/${card.color}-${card.number}.png')`;
     }
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
     let cardAnim = document.createElement("svg");
-    cardAnim.setAttribute("version", "1.1");
-    cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    newCard.appendChild(cardAnim);
+    //cardAnim.setAttribute("version", "1.1");
+    //cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    //newCard.appendChild(cardAnim);
     newCard.addEventListener("click", function () {
         if (player === "hand") {
             if (turn === 0) {
@@ -95,7 +116,6 @@ function styleRandomCard(card, player) {
         }
     });
     cardBox.appendChild(newCard);
-    console.log(cardBox);
 }
 
 function clickCard() {
