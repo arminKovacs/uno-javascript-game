@@ -64,11 +64,12 @@ function changeTurn(numberOfCardInHand) {
                 let unoButton = document.querySelector(".btn-success");
                 unoButton.addEventListener("click", function () {
                     let isClickInside = this.contains(event.target);
-                    checkForWin();
-                    flipCards();
                     if (!isClickInside) {
                         setTimeout(checkForWin, 6000);
                         setTimeout(flipCards, 6000);
+                    } else if (isClickInside) {
+                        checkForWin();
+                        flipCards();
                     }
                 });
                 break;
@@ -78,9 +79,10 @@ function changeTurn(numberOfCardInHand) {
                 break;
 
         }
+    } else {
+        checkForWin();
+        flipCards();
     }
-    checkForWin();
-    flipCards();
 }
 
 //Reset button - load game.html from start to get a new first draw
