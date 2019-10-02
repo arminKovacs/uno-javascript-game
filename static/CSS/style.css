@@ -20,7 +20,7 @@
     right: 0;
 }
 
-#card-hand {
+#container-hand {
     margin: 20px;
     display: flex;
     justify-content: center;
@@ -35,7 +35,7 @@
     display: flex;
 }
 
-#card-opponent {
+#container-opponent {
     margin: 40px 20px 20px 20px;
     display: flex;
     justify-content: center;
@@ -87,7 +87,7 @@ div #card-back {
     cursor: pointer;
     }
 
-div #card-stack {
+div #container-stack {
     display: block;
     height: 200px;
     width: 145px;
