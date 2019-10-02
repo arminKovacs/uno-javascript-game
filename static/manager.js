@@ -15,6 +15,7 @@ let turn = 0;
 function changeTurn() {
     let handCards = document.querySelector("#container-hand").querySelectorAll("div");
     let opponentCards = document.querySelector("#container-opponent").querySelectorAll("div");
+    checkForWin();
     if (turn === 0) {
         player = "opponent";
         turn = 1;
@@ -44,7 +45,7 @@ function changeTurn() {
 //Reset button - load game.html from start to get a new first draw
 let button = document.querySelector(".btn-danger");
 button.addEventListener("click", function () {
-    document.location.reload(false);
+    document.location.reload(true);
 });
 
 //Downside card stack
@@ -82,7 +83,6 @@ function getRandomCard(deck) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
     let index = deck.indexOf(randomCard);
     deck.splice(index, 1);
-    console.log(randomCard)
     return randomCard;
 }
 
@@ -145,31 +145,34 @@ function drawNewCard() {
 
 
 function checkForWin() {
-    let handCard = document.querySelector("#container-hand");
-    let opponentCard = document.querySelector("#container-opponent");
-    if (handCard === null || opponentCard === null) {
+    let handContainer = document.querySelector("#container-hand").childNodes.length;
+    let opponentContainer = document.querySelector("#container-opponent").childNodes.length;
+    if (handContainer === 1) {
+        sessionStorage.setItem("Player", "Player 1");
+        modalWin();
+    } else if (opponentContainer === 1) {
+        sessionStorage.setItem("Player", "Player 2");
         modalWin();
     }
 }
 
 function modalWin() {
     let modal = document.querySelector("#myModal");
+    document.querySelector(".modal-content").querySelector("p").innerHTML =
+        `${sessionStorage.getItem('Player')} won!`;
     let span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-// When the user clicks on <span> (x), close the modal
+    modal.style.display = "block";
     span.onclick = function () {
         modal.style.display = "none";
-    }
+        document.location.reload(true);
+    };
 
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
+            document.location.reload(true);
         }
-    }
+    };
+
 }
