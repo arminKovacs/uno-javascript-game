@@ -1,3 +1,8 @@
+#press-button {
+    font-family: 'Anton', sans-serif;
+    color: white;
+}
+
 .main-page {
     background-image: url("/static/images/background/main-background.jpg");
     background-position: center;
@@ -28,7 +33,7 @@
     float: bottom;
 }
 
-.container-middle {
+#container-middle {
     margin: 40px;
     justify-content: center;
     align-items: center;

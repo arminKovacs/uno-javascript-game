@@ -11,6 +11,19 @@ for (let color of listOfColors) {
 let player = "hand";
 let turn = 0;
 
+function startingPage() {
+    let container = document.querySelector('#container-middle');
+    let header = document.querySelector('#header');
+    let cardBack = document.createElement("div");
+    let cardStack = document.createElement("div");
+    let pressButtonText = document.querySelector('#press-button');
+    header.removeChild(pressButtonText);
+    cardBack.setAttribute('id', 'card-back');
+    cardStack.setAttribute('id', 'container-stack');
+    container.appendChild(cardBack);
+    container.appendChild(cardStack);
+}
+
 function changeTurn() {
     let handCards = document.querySelector("#container-hand").querySelectorAll("div");
     let opponentCards = document.querySelector("#container-opponent").querySelectorAll("div");
@@ -37,7 +50,7 @@ function changeTurn() {
             item.style.backgroundImage = `url('/static/images/cards/${color}-${number}.png')`;
         }
     }
-};
+}
 
 
 //Reset button - load game.html from start to get a new first draw
@@ -47,25 +60,28 @@ button.addEventListener("click", function () {
 });
 
 //Downside card stack
-let backCard = document.querySelector("#card-back");
-backCard.addEventListener("click", function () {
-    if (player === "hand") {
-        if (turn === 0) {
-            drawNewCard();
+function downSideCard() {
+    let backCard = document.querySelector("#card-back");
+    backCard.addEventListener("click", function () {
+        if (player === "hand") {
+            if (turn === 0) {
+                drawNewCard();
+            }
+        } else if (player === "opponent") {
+            if (turn === 1) {
+                drawNewCard()
+            }
         }
-    } else if (player === "opponent") {
-        if (turn === 1) {
-            drawNewCard()
-        }
-    }
-});
-
+    });
+}
 
 //FIRST DRAW button - set the game by drawing the first 5-5 cards
 let gameButton = document.querySelector(".btn-primary");
 gameButton.addEventListener("click", firstDraw);
 
 function firstDraw() {
+    startingPage();
+    downSideCard();
     for (let i = 0; i < 5; i++) {
         styleRandomCard(getRandomCard(cardDeck), "hand");
     }
@@ -101,9 +117,9 @@ function styleRandomCard(card, player) {
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
     let cardAnim = document.createElement("svg");
-    //cardAnim.setAttribute("version", "1.1");
-    //cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    //newCard.appendChild(cardAnim);
+    cardAnim.setAttribute("version", "1.1");
+    cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    newCard.appendChild(cardAnim);
     newCard.addEventListener("click", function () {
         if (player === "hand") {
             if (turn === 0) {
