@@ -24,10 +24,9 @@ function startingPage() {
     container.appendChild(cardStack);
 }
 
-function changeTurn() {
+function flipCards() {
     let handCards = document.querySelector("#container-hand").querySelectorAll("div");
     let opponentCards = document.querySelector("#container-opponent").querySelectorAll("div");
-    checkForWin();
     if (turn === 0) {
         player = "opponent";
         turn = 1;
@@ -57,6 +56,16 @@ function changeTurn() {
     }
 }
 
+
+function changeTurn() {
+    if (checkForUno() === true) {
+        setTimeout(checkForWin, 6000);
+        setTimeout(flipCards, 6000);
+    } else {
+        checkForWin();
+        flipCards();
+    }
+}
 
 //Reset button - load game.html from start to get a new first draw
 let button = document.querySelector(".btn-danger");
@@ -190,6 +199,19 @@ function checkForWin() {
     }
 }
 
+function checkForUno() {
+    let handContainer = document.querySelector("#container-hand").childNodes.length;
+    let opponentContainer = document.querySelector("#container-opponent").childNodes.length;
+    if (handContainer === 2) {
+        countDown();
+        return true
+    } else if (opponentContainer === 2) {
+        countDown();
+        return true
+    }
+    return false;
+}
+
 function modalWin() {
     let modal = document.querySelector("#myModal");
     document.querySelector(".modal-content").querySelector("h1").innerHTML = `${sessionStorage.getItem('Player')} won!`;
@@ -208,4 +230,16 @@ function modalWin() {
         }
     };
 
+}
+
+function countDown() {
+    let timeLeft = 5;
+    let downloadTimer = setInterval(function () {
+        document.querySelector("#countdown").innerHTML = timeLeft + " seconds remaining";
+        timeLeft -= 1;
+        if (timeLeft < 0) {
+            clearInterval(downloadTimer);
+            document.getElementById("countdown").innerHTML = "";
+        }
+    }, 1000);
 }

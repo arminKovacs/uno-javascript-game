@@ -166,3 +166,7 @@ svg {
   text-decoration: none;
   cursor: pointer;
 }
+
+#countdown {
+    color: white;
+}
