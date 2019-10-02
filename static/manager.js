@@ -8,6 +8,12 @@ for (let color of listOfColors) {
     }
 }
 
+let elementIsClicked = false;
+function clickHandler(){
+  elementIsClicked = true;
+}
+let unoButton = document.querySelector(".btn-success");
+unoButton.addEventListener("click", clickHandler);
 let player = "hand";
 let turn = 0;
 
@@ -61,23 +67,19 @@ function changeTurn(numberOfCardInHand) {
     if (numberOfCardInHand === 3) {
         switch (checkForUno()) {
             case true:
-                let unoButton = document.querySelector(".btn-success");
-                unoButton.addEventListener("click", function () {
-                    let isClickInside = this.contains(event.target);
-                    if (!isClickInside) {
-                        setTimeout(checkForWin, 6000);
-                        setTimeout(flipCards, 6000);
-                    } else if (isClickInside) {
-                        checkForWin();
-                        flipCards();
-                    }
-                });
+                if (elementIsClicked === false) {
+                    setTimeout(drawCardIfUnoFail, 6000);
+                    setTimeout(checkForWin, 6000);
+                    setTimeout(flipCards, 6000);
+                } else if (elementIsClicked === true) {
+                    checkForWin();
+                    flipCards();
+                }
                 break;
             case false:
                 checkForWin();
                 flipCards();
                 break;
-
         }
     } else {
         checkForWin();
@@ -206,6 +208,16 @@ function drawNewCard() {
 }
 
 
+function drawCardIfUnoFail() {
+    for (let i = 0; i < 2; i++) {
+        if (turn === 0) {
+            styleRandomCard(getRandomCard(cardDeck), "hand");
+        } else if (turn === 1) {
+            styleRandomCard(getRandomCard(cardDeck), "opponent")
+        }
+    }
+}
+
 function checkForWin() {
     let handContainer = document.querySelector("#container-hand").childNodes.length;
     let opponentContainer = document.querySelector("#container-opponent").childNodes.length;
@@ -252,6 +264,7 @@ function modalWin() {
 }
 
 function countDown() {
+    x = 1;
     let timeLeft = 5;
     let downloadTimer = setInterval(function () {
         document.querySelector("#countdown").innerHTML = timeLeft + " seconds remaining";
