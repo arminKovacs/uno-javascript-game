@@ -2,19 +2,23 @@
 {% extends 'layout.html' %}
 
 {% block head %}
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
     <script src="/static/manager.js" defer></script>
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
+    <div id="header">
+        <h1 id="press-button">Press draw card button</h1>
+    </div>
+
     <div class="test">
+
         <div id="container-opponent">
         </div>
 
-        <div class="container-middle">
-            <div id="card-back"></div>
-            <div id="container-stack"></div>
+        <div id="container-middle">
         </div>
 
         <div id="container-hand">
@@ -24,7 +28,6 @@
 <nav class="navbar fixed-bottom navbar-dark bg-dark">
     <div class="nav navbar-nav navbar-center">
         <button type="button" class="btn btn-primary">Deal cards</button>
-        <button type="button" class="btn btn-secondary">End turn</button>
         <button type="button" class="btn btn-success">UNO</button>
         <button type="button" class="btn btn-danger">Reset</button>
     </div>
