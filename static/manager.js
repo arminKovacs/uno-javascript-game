@@ -10,6 +10,9 @@ for (let color of listOfColors) {
 
 let player = "hand";
 let turn = 0;
+let playerDraggable = dragula([document.querySelector('#container-hand')]);
+let opponentDraggable = dragula([document.querySelector('#container-opponent')]);
+
 
 function startingPage() {
     let container = document.querySelector('#container-middle');
@@ -28,12 +31,17 @@ function changeTurn() {
     let handCards = document.querySelector("#container-hand").querySelectorAll("div");
     let opponentCards = document.querySelector("#container-opponent").querySelectorAll("div");
     checkForWin();
+
     if (turn === 0) {
         player = "opponent";
         turn = 1;
+        playerDraggable.destroy();
+        opponentDraggable = dragula([document.getElementById('container-opponent')]);
+
         for (let item of handCards) {
             item.classList.value = 'opponent';
             item.style.backgroundImage = `url('/static/images/cards/back.png')`;
+            item.setAttribute("draggable", "false")
         }
         for (let item of opponentCards) {
             item.classList.value = 'card';
@@ -44,6 +52,10 @@ function changeTurn() {
     } else if (turn === 1) {
         player = "hand";
         turn = 0;
+        opponentDraggable.destroy();
+        playerDraggable = dragula([document.querySelector('#container-hand')]);
+
+
         for (let item of opponentCards) {
             item.classList.value = 'opponent';
             item.style.backgroundImage = `url('/static/images/cards/back.png')`;
@@ -106,6 +118,7 @@ function getRandomCard(deck) {
 }
 
 function styleRandomCard(card, player) {
+    opponentDraggable.destroy();
     let cardBox = document.querySelector(`#container-${player}`);
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${card.color}`);
@@ -207,5 +220,4 @@ function modalWin() {
             document.location.reload(true);
         }
     };
-
 }
