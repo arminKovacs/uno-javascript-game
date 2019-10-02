@@ -57,14 +57,30 @@ function flipCards() {
 }
 
 
-function changeTurn() {
-    if (checkForUno() === true) {
-        setTimeout(checkForWin, 6000);
-        setTimeout(flipCards, 6000);
-    } else {
-        checkForWin();
-        flipCards();
+function changeTurn(numberOfCardInHand) {
+    if (numberOfCardInHand === 3) {
+        switch (checkForUno()) {
+            case true:
+                let unoButton = document.querySelector(".btn-success");
+                unoButton.addEventListener("click", function () {
+                    let isClickInside = this.contains(event.target);
+                    checkForWin();
+                    flipCards();
+                    if (!isClickInside) {
+                        setTimeout(checkForWin, 6000);
+                        setTimeout(flipCards, 6000);
+                    }
+                });
+                break;
+            case false:
+                checkForWin();
+                flipCards();
+                break;
+
+        }
     }
+    checkForWin();
+    flipCards();
 }
 
 //Reset button - load game.html from start to get a new first draw
@@ -155,6 +171,7 @@ function styleRandomCard(card, player) {
 
 function clickCard() {
     let card = event.target;
+    let cardContainerNumber = card.parentNode.childNodes.length;
     let stack = document.querySelector("#container-stack").querySelector('[data-color]');
     let stackColor = stack.dataset.color;
     let stackNumber = stack.dataset.number;
@@ -165,15 +182,15 @@ function clickCard() {
         cardStackBox.removeChild(stack);
         cardStackBox.appendChild(card);
         if (cardNumber === "block" || cardNumber === "reverse") {
-            changeTurn();
+            changeTurn(cardContainerNumber);
         }
         if (cardNumber === "plus-2") {
-            changeTurn();
+            changeTurn(cardContainerNumber);
             drawNewCard();
-            changeTurn();
+            changeTurn(cardContainerNumber);
             drawNewCard();
         }
-        changeTurn();
+        changeTurn(cardContainerNumber);
     }
 }
 
@@ -183,7 +200,7 @@ function drawNewCard() {
     } else if (turn === 1) {
         styleRandomCard(getRandomCard(cardDeck), "opponent")
     }
-    changeTurn()
+    changeTurn(4)
 }
 
 
