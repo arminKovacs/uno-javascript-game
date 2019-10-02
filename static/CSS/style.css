@@ -150,6 +150,9 @@ svg {
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+.modal-content h1 {
+    text-align: center;
+}
 .close {
   color: #aaa;
   float: right;
