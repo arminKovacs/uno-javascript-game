@@ -12,23 +12,20 @@ for (let color of listOfColors) {
 
 let player = "hand";
 let turn = 0;
-document.querySelector("h1").innerHTML = "Turn: Player 1";
 
 function changeTurn() {
     if (turn === 0) {
         player = "opponent";
         turn = 1;
-        document.querySelector("h1").innerHTML = "Turn: Player 2";
     } else if (turn === 1) {
         player = "hand";
         turn = 0;
-        document.querySelector("h1").innerHTML = "Turn: Player 1";
     }
 };
 
 
 //Reset button - load game.html from start to get a new first draw
-let button = document.querySelector(".button");
+let button = document.querySelector(".btn-danger");
 button.addEventListener("click", function () {
     document.location.reload(false);
 });
@@ -49,7 +46,7 @@ backCard.addEventListener("click", function () {
 
 
 //FIRST DRAW button - set the game by drawing the first 5-5 cards
-let gameButton = document.querySelector(".btn-game");
+let gameButton = document.querySelector(".btn-primary");
 gameButton.addEventListener("click", firstDraw);
 
 function firstDraw() {
@@ -66,10 +63,8 @@ function firstDraw() {
 
 function getRandomCard(deck) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
-    console.log(deck);
     let index = deck.indexOf(randomCard);
     deck.splice(index, 1);
-    console.log(deck);
     return randomCard;
 }
 
@@ -78,11 +73,14 @@ function styleRandomCard(card, player) {
     let newCard = document.createElement("div");
     newCard.setAttribute("data-color", `${card.color}`);
     newCard.setAttribute("data-number", `${card.number}`);
-    newCard.style.height = "200px";
-    newCard.style.width = "120px";
+    newCard.classList.value = 'card';
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
     newCard.style.backgroundImage = `url('static/images/cards/${card.color}-${card.number}.png')`;
+    let cardAnim = document.createElement("svg");
+    cardAnim.setAttribute("version", "1.1");
+    cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    newCard.appendChild(cardAnim);
     newCard.addEventListener("click", function () {
         if (player === "hand") {
             if (turn === 0) {

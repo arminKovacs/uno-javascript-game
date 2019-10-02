@@ -8,18 +8,26 @@
 {% block content %}
 
     <div class="test">
-        <div id="card-back"></div>
-        <button class="button" style="color: red">Reset</button>
-        <button class="btn-game">FIRST DRAW</button>
-        <h1 style="color: antiquewhite; padding-top: 30px"></h1>
+        <div id="card-opponent">
+        </div>
 
-        <h3 style="color: antiquewhite; padding-top: 30px;">Cards of Player 1</h3>
-        <div id="card-hand"></div>
+        <div class="container-middle">
+            <div id="card-back"></div>
+            <div id="card-stack"></div>
+        </div>
 
-        <div id="card-stack"></div>
-        <h3 style="color: antiquewhite; padding-top: 30px">Cards of Player 2</h3>
-        <div id="card-opponent"></div>
+        <div id="card-hand">
+        </div>
     </div>
+
+<nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <div class="nav navbar-nav navbar-center">
+        <button type="button" class="btn btn-primary">Deal cards</button>
+        <button type="button" class="btn btn-secondary">End turn</button>
+        <button type="button" class="btn btn-success">UNO</button>
+        <button type="button" class="btn btn-danger">Reset</button>
+    </div>
+</nav>
 
 {% endblock %}
 </body>

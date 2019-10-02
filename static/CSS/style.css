@@ -12,46 +12,59 @@
     background-size: cover;
 }
 
-.opponent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    float: top;
-}
-
-.opponent-cards {
+.navbar-nav.navbar-center {
     display: inline-block;
-    height: 150px;
-    width: 110px;
-    border-style: solid;
-    border-color: black;
-    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
-.game-area {
-    display: block;
-    margin: 20px auto 20px auto;
-    float: inside;
-    height: 150px;
-    width: 110px;
-    border-style: solid;
-    border-color: black;
-}
-
-.player {
+#card-hand {
+    margin: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     float: bottom;
 }
 
-.player-cards {
+.container-middle {
+    margin: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#card-opponent {
+    margin: 40px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: top;
+}
+
+.card {
     display: inline-block;
-    height: 150px;
-    width: 110px;
-    border-style: solid;
-    border-color: black;
-    margin: 10px;
+    height: 200px;
+    width: 145px;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    transition: 0.4s ease-out;
+    position: relative;
+    left: 0;
+    cursor: pointer;
+}
+
+.opponent {
+    display: inline-block;
+    height: 200px;
+    width: 145px;
+    border-radius: 10px;
+    box-shadow: -1rem 0 3rem #000;
+    transition: 0.4s ease-out;
+    position: relative;
+    left: 0;
+    cursor: pointer;
 }
 
 .navbar-nav.navbar-center {
@@ -62,73 +75,47 @@
     right: 0;
 }
 
-.container {
-    position: absolute;
-    height: 300px;
-    width: 600px;
-    top: 60px;
-    left: calc(50% - 300px);
-    display: flex;
-}
 
-.card {
-  display: flex;
-  height: 150px;
-  width: 110px;
-  background-color: #17141d;
-  border-radius: 10px;
-  box-shadow: -1rem 0 3rem #000;
-  transition: 0.4s ease-out;
-  position: relative;
-  left: 0px;
-}
-
-
-div #card-hand, #card-opponent {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    cursor: pointer;
-}
 
 div #card-back {
     background-image: url("/static/images/cards/back.png");
     display: block;
-    height: 250px;
-    width: 200px;
+    height: 200px;
+    width: 145px;
     background-size: contain;
     background-repeat: no-repeat;
-    float: right;
-    padding-right: 30%;
     cursor: pointer;
-}
+    }
 
 div #card-stack {
     display: block;
-    height: 300px;
-    width: 220px;
+    height: 200px;
+    width: 145px;
     background-size: contain;
     background-repeat: no-repeat;
-    float: right;
-    padding-right: 30%;
-}
+    }
 
 .card:not(:first-child) {
     margin-left: -50px;
 }
 
 .card:hover {
-  transform: translateY(-20px);
-  transition: 0.4s ease-out;
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
 }
 
 .card:hover ~ .card {
-  position: relative;
-  left: 50px;
-  transition: 0.4s ease-out;
+    position: relative;
+    left: 50px;
+    transition: 0.4s ease-out;
 }
 
+.opponent:not(:first-child) {
+    margin-left: -50px;
+}
+
+
 svg {
-  fill: #17141d;
-  stroke-width: 2px;
+    fill: #17141d;
+    stroke-width: 2px;
 }
