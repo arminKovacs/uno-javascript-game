@@ -70,35 +70,31 @@ function flipCards() {
         turn = 1;
         playerDraggable.destroy();
         opponentDraggable = dragula([document.getElementById('container-opponent')]);
-
-        for (let item of handCards) {
-            item.classList.value = 'opponent';
-            item.style.backgroundImage = `url('/static/images/cards/back.png')`;
-        }
-        for (let item of opponentCards) {
-            item.classList.value = 'card';
-            let color = item.dataset.color;
-            let number = item.dataset.number;
-            item.style.backgroundImage = `url('/static/images/cards/${color}-${number}.png')`;
-        }
+        flipCardsHelper(handCards, opponentCards, 0)
     } else if (turn === 1) {
         player = "hand";
         turn = 0;
         opponentDraggable.destroy();
         playerDraggable = dragula([document.querySelector('#container-hand')]);
+        flipCardsHelper(handCards, opponentCards, 1)
+    }
+}
 
-
-        for (let item of opponentCards) {
+function flipCardsHelper(hand, opponent, turn) {
+    if (turn === 0){
+        opponent = hand;
+        hand = opponent;
+    }
+    for (let item of opponent) {
             item.classList.value = 'opponent';
             item.style.backgroundImage = `url('/static/images/cards/back.png')`;
         }
-        for (let item of handCards) {
+        for (let item of hand) {
             item.classList.value = 'card';
             let color = item.dataset.color;
             let number = item.dataset.number;
             item.style.backgroundImage = `url('/static/images/cards/${color}-${number}.png')`;
         }
-    }
 }
 
 function unoNotClicked() {
