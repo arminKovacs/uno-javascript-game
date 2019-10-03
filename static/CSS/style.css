@@ -231,9 +231,8 @@ svg {
 .validation {
     width: 100px;
     height: 50px;
-    padding-top: 30px;
-    text-align: center;
-    text-align-all: center;
+    text-align: center !important;
+    margin: auto;
 }
 
 .dropdown {
@@ -242,4 +241,5 @@ svg {
     text-align: center;
     align-content: center;
     alignment: center;
+    margin: auto;
 }
