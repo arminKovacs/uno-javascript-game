@@ -230,12 +230,15 @@ function clickCard() {
             drawNewCard();
         }
         if (cardNumber === "plus-4" || cardNumber === "request") {
-            modal2()
-            let selected = document.querySelector(".dropdown")
-            let selectedColor = selected.value
-            console.log(selectedColor)
-            card.dataset.color = selectedColor;
-
+            modal2();
+            let validationButton = document.querySelector(".validation");
+            validationButton.addEventListener("click", function () {
+                let selected = document.querySelector(".dropdown");
+                let selectedColor = selected.value;
+                console.log(selectedColor);
+                card.dataset.color = selectedColor;
+                document.querySelector('#myModal2').style.display = "none";
+            });
             if (cardNumber === "plus-4") {
                 for (let i = 0; i < 4; i++) {
                     changeTurn(4)
