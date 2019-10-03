@@ -230,8 +230,11 @@ function clickCard() {
             drawNewCard();
         }
         if (cardNumber === "plus-4" || cardNumber === "request") {
-            alert("lofasz");
-            card.dataset.color = "green";
+            modal2()
+            let selected = document.querySelector(".dropdown")
+            let selectedColor = selected.value
+            console.log(selectedColor)
+            card.dataset.color = selectedColor;
 
             if (cardNumber === "plus-4") {
                 for (let i = 0; i < 4; i++) {
@@ -303,6 +306,15 @@ function modalWin() {
             modal.style.display = "none";
             document.location.reload(true);
         }
+    };
+}
+
+function modal2() {
+    let modal = document.querySelector('#myModal2');
+    let span = document.getElementsByClassName('close2')[0];
+    modal.style.display = "block";
+    span.onclick = function () {
+        modal.style.display = "none";
     };
 }
 

@@ -2,8 +2,11 @@
 {% extends 'layout.html' %}
 
 {% block head %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css"/>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js' defer></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
     <script src="/static/manager.js" defer></script>
     <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
 
@@ -27,27 +30,46 @@
         </div>
     </div>
 
-<nav class="navbar fixed-bottom navbar-dark bg-dark">
-    <div class="nav navbar-nav navbar-center">
-        <button type="button" class="btn btn-primary">Deal cards</button>
-        <button type="button" class="btn btn-success">UNO</button>
-        <button type="button" class="btn btn-danger">Reset</button>
-    </div>
-</nav>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+        <div class="nav navbar-nav navbar-center">
+            <button type="button" class="btn btn-primary">Deal cards</button>
+            <button type="button" class="btn btn-success">UNO</button>
+            <button type="button" class="btn btn-danger">Reset</button>
+        </div>
+    </nav>
 
-<div id="countdown"></div>
+    <div id="countdown"></div>
     <h1 class="message"></h1>
 
     <!-- The Modal -->
-<div id="myModal" class="modal">
+    <div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h1 style="font-family: Anton, 'sans-serif', monospace"></h1>
-  </div>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1 style="font-family: Anton, 'sans-serif', monospace"></h1>
+        </div>
 
-</div>
+    </div>
+
+
+    <div id="myModal2" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close2">&times;</span>
+            <h2 style="font-family: Anton, 'sans-serif', monospace">Choose your color!</h2>
+            <select class="dropdown">
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+                <option value="yellow">Yellow</option>
+            </select>
+            <button class="btn btn-success validation">Ok</button>
+            <h1 style="font-family: Anton, 'sans-serif', monospace"></h1>
+        </div>
+
+    </div>
 
 {% endblock %}
 </body>
