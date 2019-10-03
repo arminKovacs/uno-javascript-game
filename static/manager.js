@@ -119,8 +119,10 @@ function changeTurn(numberOfCardInHand) {
             case true:
                 countDown();
                 setTimeout(unoNotClicked, 6000);
+                setTimeout(modalSwitch, 6000);
                 break;
             case false:
+                modalSwitch();
                 checkForWin();
                 flipCards();
                 break;
