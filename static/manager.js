@@ -12,10 +12,12 @@ let elementIsClicked = false;
 
 function clickHandler() {
     elementIsClicked = true;
-    document.querySelector(".message").innerHTML = "You pushed the UNO button!"
+    document.querySelector(".message").innerHTML = "UNO!"
+    unoButton.style.display = "none";
 }
 
 let unoButton = document.querySelector(".btn-success");
+unoButton.style.display = "none";
 unoButton.addEventListener("click", function () {
     console.log(clickHandler());
 });
@@ -273,7 +275,7 @@ function modalWin() {
 }
 
 function countDown() {
-    x = 1;
+    unoButton.style.display = "inline-block";
     let timeLeft = 5;
     let downloadTimer = setInterval(function () {
         document.querySelector("#countdown").innerHTML = timeLeft + " seconds remaining";
