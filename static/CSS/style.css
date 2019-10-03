@@ -233,13 +233,18 @@ svg {
     height: 50px;
     text-align: center !important;
     margin: auto;
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
 }
 
 .dropdown {
-    width: 80px;
+    width: 100px;
     height: 50px;
     text-align: center;
     align-content: center;
     alignment: center;
     margin: auto;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 1px;
+    font-size: 22px;
 }

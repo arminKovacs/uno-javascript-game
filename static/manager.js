@@ -122,8 +122,8 @@ function changeTurn(numberOfCardInHand) {
                 setTimeout(modalSwitch, 6000);
                 break;
             case false:
-                modalSwitch();
                 checkForWin();
+                modalSwitch();
                 flipCards();
                 break;
         }
@@ -232,7 +232,17 @@ function clickCard() {
         cardStackBox.removeChild(stack);
         cardStackBox.appendChild(card);
         if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].indexOf(cardNumber) > -1) {
-            changeTurn(cardContainerNumber)
+            if (cardContainerNumber === 3) {
+                if (checkForUno() === true) {
+                    countDown();
+                    setTimeout(unoNotClicked, 6000);
+                    setTimeout(modalSwitch, 6000);
+                }
+            } else {
+                checkForWin();
+                modalSwitch();
+                changeTurn(cardContainerNumber)
+            }
         } else if (cardNumber === "block" || cardNumber === "reverse") {
             changeTurn(cardContainerNumber);
             changeTurn(cardContainerNumber);
@@ -252,9 +262,21 @@ function clickCard() {
 
 function drawNewCard() {
     if (turn === 0) {
-        styleRandomCard(getRandomCard(cardDeck), "hand");
-    } else if (turn === 1) {
-        styleRandomCard(getRandomCard(cardDeck), "opponent")
+        if (sessionStorage.getItem("Plus 4") === "4") {
+            styleRandomCard(getRandomCard(cardDeck), "opponent");
+            sessionStorage.clear();
+        } else {
+        modalSwitch();
+        styleRandomCard(getRandomCard(cardDeck), "hand");}
+    }
+    else if (turn === 1) {
+        if (sessionStorage.getItem("Plus 4") === "4") {
+            styleRandomCard(getRandomCard(cardDeck), "hand");
+            sessionStorage.clear();
+        } else {
+            modalSwitch();
+            styleRandomCard(getRandomCard(cardDeck), "opponent")
+        }
     }
     changeTurn(4)
 }
@@ -319,11 +341,11 @@ function modalChooseColor(card) {
         card.dataset.color = selectedColor.value;
         modal.style.display = "none";
     });
-    console.log(card.dataset.number);
     if (card.dataset.number === "plus-4") {
         for (let i = 0; i < 4; i++) {
-            changeTurn();
+            sessionStorage.setItem("Plus 4", "4");
             drawNewCard();
+            changeTurn();
         }
     }
 }
