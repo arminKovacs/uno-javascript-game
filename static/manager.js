@@ -18,7 +18,7 @@ for (let color of listOfBlacks) {
         cardDeck.push({color: `${color}`, number: `${action}`});
     }
 }
-
+let colorValidation;
 let elementIsClicked = false;
 
 function clickHandler() {
@@ -32,6 +32,8 @@ unoButton.style.display = "none";
 unoButton.addEventListener("click", function () {
     console.log(clickHandler());
 });
+
+let selectedColor;
 let player = "hand";
 let turn = 0;
 let playerDraggable = dragula([document.querySelector('#container-hand')]);
@@ -220,34 +222,23 @@ function clickCard() {
     if (cardNumber === stackNumber || cardColor === stackColor) {
         cardStackBox.removeChild(stack);
         cardStackBox.appendChild(card);
-        if (cardNumber === "block" || cardNumber === "reverse") {
-            changeTurn(cardContainerNumber);
+        if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].indexOf(cardNumber) > -1) {
+            modalSwitch();
         }
-        if (cardNumber === "plus-2") {
-            changeTurn(4);
-            drawNewCard();
-            changeTurn(4);
-            drawNewCard();
+        else if (cardNumber === "block" || cardNumber === "reverse") {
+            changeTurn(cardContainerNumber)
+            changeTurn(cardContainerNumber)
         }
-        if (cardNumber === "plus-4" || cardNumber === "request") {
-            modal2();
-            let validationButton = document.querySelector(".validation");
-            validationButton.addEventListener("click", function () {
-                let selected = document.querySelector(".dropdown");
-                let selectedColor = selected.value;
-                card.dataset.color = selectedColor;
-                document.querySelector('#myModal2').style.display = "none";
-                if (cardNumber === "plus-4") {
-                    for (let i = 0; i < 4; i++) {
-                        changeTurn(4)
-                        drawNewCard()
-                    }
-                }
-            });
-
-
+        else if (cardNumber === "plus-2") {
+            for (let i = 0; i < 2; i++) {
+                changeTurn(4);
+                drawNewCard();
+            }
+            modalSwitch(cardContainerNumber);
         }
-        changeTurn(cardContainerNumber);
+        else if (cardNumber === "plus-4" || cardNumber === "request") {
+            modal2(card, cardContainerNumber);
+        }
     }
 }
 
@@ -312,13 +303,37 @@ function modalWin() {
     };
 }
 
-function modal2() {
+function modal2(card, number) {
     let modal = document.querySelector('#myModal2');
     let span = document.getElementsByClassName('close2')[0];
     modal.style.display = "block";
     span.onclick = function () {
         modal.style.display = "none";
+
     };
+    let validationButton = document.querySelector(".validation");
+    validationButton.addEventListener("click", function () {
+        selectedColor = document.querySelector(".dropdown");
+        card.dataset.color = selectedColor.value;
+        document.querySelector('#myModal2').style.display = "none";
+        if (card.dataset.number === "plus-4") {
+                for (let i = 0; i < 4; i++) {
+                    changeTurn();
+                    drawNewCard();
+                }
+            }
+        modalSwitch(number);
+    });
+}
+
+function modalSwitch(number) {
+    let modal = document.querySelector(".myModal3");
+    let span = document.getElementsByClassName('close3')[0];
+    modal.style.display = "block";
+    span.onclick = function () {
+        modal.style.display = "none";
+        changeTurn(number)
+    }
 }
 
 function countDown() {
