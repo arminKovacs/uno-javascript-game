@@ -12,7 +12,7 @@ let elementIsClicked = false;
 
 function clickHandler() {
     elementIsClicked = true;
-    document.querySelector(".message").innerHTML = "UNO!"
+    document.querySelector(".message").innerHTML = "UNO!";
     unoButton.style.display = "none";
 }
 
@@ -52,7 +52,6 @@ function flipCards() {
         for (let item of handCards) {
             item.classList.value = 'opponent';
             item.style.backgroundImage = `url('/static/images/cards/back.png')`;
-            item.setAttribute("draggable", "false")
         }
         for (let item of opponentCards) {
             item.classList.value = 'card';
@@ -181,10 +180,6 @@ function styleRandomCard(card, player) {
     }
     newCard.style.backgroundSize = "contain";
     newCard.style.backgroundRepeat = "no-repeat";
-    let cardAnim = document.createElement("svg");
-    cardAnim.setAttribute("version", "1.1");
-    cardAnim.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    newCard.appendChild(cardAnim);
     newCard.addEventListener("click", function () {
         if (player === "hand") {
             if (turn === 0) {
