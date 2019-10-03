@@ -1,3 +1,15 @@
+function playThemeSong() {
+    const themeSong = new Audio("static/sounds/theme.mp3");
+    themeSong.play();
+}
+
+function playSurpriseSound(soundname) {
+    const surpriseSound = new Audio(`static/sounds/${soundname}.mp3`);
+    surpriseSound.play();
+}
+
+playThemeSong()
+
 let cardDeck = [];
 let listOfColors = ["blue", "green", "red", "yellow"];
 let listOfNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "block", "reverse", "plus-2"];
@@ -36,7 +48,6 @@ let player = "hand";
 let turn = 0;
 let playerDraggable = dragula([document.querySelector('#container-hand')]);
 let opponentDraggable = dragula([document.querySelector('#container-opponent')]);
-
 
 function startingPage() {
     let container = document.querySelector('#container-middle');
@@ -89,7 +100,6 @@ function flipCards() {
         }
     }
 }
-
 
 function unoNotClicked() {
     if (elementIsClicked === false) {
@@ -224,12 +234,16 @@ function clickCard() {
             changeTurn(cardContainerNumber);
         }
         if (cardNumber === "plus-2") {
+            playSurpriseSound('plus2')
             changeTurn(4);
             drawNewCard();
             changeTurn(4);
             drawNewCard();
         }
         if (cardNumber === "plus-4" || cardNumber === "request") {
+            if(cardNumber === "plus-4") {
+                playSurpriseSound('surprise')
+            }
             modal2();
             let validationButton = document.querySelector(".validation");
             validationButton.addEventListener("click", function () {
@@ -244,8 +258,6 @@ function clickCard() {
                     }
                 }
             });
-
-
         }
         changeTurn(cardContainerNumber);
     }
@@ -259,7 +271,6 @@ function drawNewCard() {
     }
     changeTurn(4)
 }
-
 
 function drawCardIfUnoFail() {
     for (let i = 0; i < 2; i++) {
