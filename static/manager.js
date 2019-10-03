@@ -235,16 +235,16 @@ function clickCard() {
             validationButton.addEventListener("click", function () {
                 let selected = document.querySelector(".dropdown");
                 let selectedColor = selected.value;
-                console.log(selectedColor);
                 card.dataset.color = selectedColor;
                 document.querySelector('#myModal2').style.display = "none";
-            });
-            if (cardNumber === "plus-4") {
-                for (let i = 0; i < 4; i++) {
-                    changeTurn(4)
-                    drawNewCard()
+                if (cardNumber === "plus-4") {
+                    for (let i = 0; i < 4; i++) {
+                        changeTurn(4)
+                        drawNewCard()
+                    }
                 }
-            }
+            });
+
 
         }
         changeTurn(cardContainerNumber);
