@@ -1,10 +1,21 @@
 let cardDeck = [];
 let listOfColors = ["blue", "green", "red", "yellow"];
 let listOfNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "block", "reverse", "plus-2"];
+let listOfBlacks = ["black"];
+let listOfBlackAction = ["plus-4", "request"];
 for (let color of listOfColors) {
     for (let number of listOfNumbers) {
         cardDeck.push({color: `${color}`, number: `${number}`});
         cardDeck.push({color: `${color}`, number: `${number}`});
+    }
+}
+
+for (let color of listOfBlacks) {
+    for (let action of listOfBlackAction) {
+        cardDeck.push({color: `${color}`, number: `${action}`});
+        cardDeck.push({color: `${color}`, number: `${action}`});
+        cardDeck.push({color: `${color}`, number: `${action}`});
+        cardDeck.push({color: `${color}`, number: `${action}`});
     }
 }
 
@@ -207,6 +218,9 @@ function clickCard() {
     let stackNumber = stack.dataset.number;
     let cardColor = card.dataset.color;
     let cardNumber = card.dataset.number;
+    if (cardColor === "black") {
+        cardColor = stackColor;
+    }
     let cardStackBox = document.querySelector("#container-stack");
     if (cardNumber === stackNumber || cardColor === stackColor) {
         cardStackBox.removeChild(stack);
@@ -219,6 +233,18 @@ function clickCard() {
             drawNewCard();
             changeTurn(4);
             drawNewCard();
+        }
+        if (cardNumber === "plus-4" || cardNumber === "request") {
+            alert("lofasz");
+            card.dataset.color = "green";
+
+            if (cardNumber === "plus-4") {
+                for (let i = 0; i < 4; i++) {
+                    changeTurn(4)
+                    drawNewCard()
+                }
+            }
+
         }
         changeTurn(cardContainerNumber);
     }
