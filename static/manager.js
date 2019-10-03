@@ -18,7 +18,6 @@ for (let color of listOfBlacks) {
         cardDeck.push({color: `${color}`, number: `${action}`});
     }
 }
-let colorValidation;
 let elementIsClicked = false;
 
 function clickHandler() {
@@ -96,10 +95,8 @@ function flipCards() {
 function unoNotClicked() {
     if (elementIsClicked === false) {
         drawCardIfUnoFail();
-        checkForWin();
         flipCards();
     } else if (elementIsClicked === true) {
-        checkForWin();
         flipCards();
         elementIsClicked = false;
         document.querySelector(".message").innerHTML = "";
@@ -118,9 +115,11 @@ function changeTurn(numberOfCardInHand) {
                 flipCards();
                 break;
         }
-    } else {
+    } else if (numberOfCardInHand === 2) {
         checkForWin();
         flipCards();
+    } else {
+        modalSwitch(4);
     }
 }
 
@@ -223,7 +222,7 @@ function clickCard() {
         cardStackBox.removeChild(stack);
         cardStackBox.appendChild(card);
         if (["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].indexOf(cardNumber) > -1) {
-            modalSwitch();
+            changeTurn(cardContainerNumber)
         }
         else if (cardNumber === "block" || cardNumber === "reverse") {
             changeTurn(cardContainerNumber)
@@ -289,10 +288,11 @@ function modalWin() {
     document.querySelector(".modal-content").querySelector("h1").innerHTML = `${sessionStorage.getItem('Player')} won!`;
     let span = document.getElementsByClassName("close")[0];
     modal.style.display = "block";
-    span.onclick = function () {
+    console.log("basszameg")
+    span.addEventListener("click", function () {
         modal.style.display = "none";
         document.location.reload(true);
-    };
+    });
 
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
