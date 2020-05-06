@@ -13,4 +13,4 @@ Project was made by 2 Codecool students in 1 week while studying to be a junior 
 - Drag and drop is not fully functional
 
 # Demo
-![UNO game demo](demo/Peek 2020-05-06 13-06.gif)
+![UNO game demo](demo/demo.gif)
